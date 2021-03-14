@@ -1,9 +1,10 @@
 node{
+    checkout scm
     stage('Build image') {
-       app = docker.build("[id-of-your-project-as-in-google-url]/[name-of-the-artifact]")
+       app = docker.build("test/test")
     }
     stage('Push image') {
-        docker.withRegistry('https://eu.gcr.io', 'gcr:[credentials-id]') {
+        docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
