@@ -1,7 +1,7 @@
 node{
     checkout scm
     stage('Build image ') {
-        when { anyOf { branch 'develop'; branch 'master' } }
+        when { anyOf { branch 'develop'; branch 'master'; branch 'main' } }
         app = docker.build("fourth-memento-307608/test")
     }
     stage('Push image develop') {
