@@ -3,13 +3,13 @@ node{
     if (env.BRANCH_NAME ==~ /(develop|master|main)/) {
         
         stage('Build image ') {
-            app = docker.build("fourth-memento-307608/test")
+            ms1 = docker.build("fourth-memento-307608/test","./cicd/Dockerfile")
         }
         
         if (env.BRANCH_NAME ==~ /(develop)/ )  {
             stage('Push image develop') {
                 docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry') {
-                    app.push("latest")
+                    ms1.push("latest")
                 }
             }
         }
@@ -17,7 +17,7 @@ node{
         if (env.BRANCH_NAME ==~ /(master)/ )  {
             stage('Push image master') {
                 docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry') {
-                    app.push("${env.BUILD_NUMBER}")
+                    ms1.push("${env.BUILD_NUMBER}")
                 }
             }
         }
