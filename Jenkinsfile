@@ -1,7 +1,7 @@
 node{
     checkout scm
     stage('Build image ') {
-        if (env.BRANCH_NAME ==~ /(develop|master)/) {
+        if (env.BRANCH_NAME ==~ /(develop|master|main)/) {
             app = docker.build("fourth-memento-307608/test")
         }
 
