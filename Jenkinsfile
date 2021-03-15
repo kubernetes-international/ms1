@@ -2,7 +2,7 @@ node{
     checkout scm
     // if (env.BRANCH_NAME ==~ /(develop|master)/) {    
         stage('Build image ') {
-            ms1 = docker.build("fourth-memento-307608/test","./cicd")
+            ms1 = docker.build("fourth-memento-307608/test","-f ./cicd/Dockerfile")
         }
     // } 
 
