@@ -8,8 +8,8 @@ pipeline {
         }
         stage('Build and push image') {
             anyOf{
-                when { branch "develop" }
-                when { branch "master" }
+                expression{env.BRANCH_NAME == 'master'}
+                expression{env.BRANCH_NAME == 'develop'}
             }
             steps{
                 script {
