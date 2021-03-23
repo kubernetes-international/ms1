@@ -14,6 +14,7 @@ pipeline {
         }
     }
 }
+// test
 // node{
 //     checkout scm
 //     if (env.BRANCH_NAME ==~ /(develop|master)/) {    
