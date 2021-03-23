@@ -19,13 +19,10 @@ pipeline {
                 }
                 script {
                     echo "specify reg"
-                    docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry')
+                        docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry') {
+                            ms1.push("latest")
+                        }                    
                     echo "specify reg"
-                }
-                script {
-                    echo "push"
-                    ms1.push("${env.BUILD_NUMBER}")
-                    echo "push"
                 }
             }
         }
