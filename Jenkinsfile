@@ -16,7 +16,7 @@ pipeline {
             steps{
                 script {
                     ms1 = docker.build("fourth-memento-307608/test","-f ./cicd/Dockerfile ./ ")
-                    docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry') {
+                    docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry')
                     ms1.push("${env.BUILD_NUMBER}")
                 }
             }
