@@ -9,7 +9,9 @@ pipeline {
         stage('Build image') {
             when { branch "master" }
             steps{
-                ms1 = docker.build("fourth-memento-307608/test","-f ./cicd/Dockerfile ./ ")
+                script {
+                    ms1 = docker.build("fourth-memento-307608/test","-f ./cicd/Dockerfile ./ ")
+                }
             }
         }
     }
