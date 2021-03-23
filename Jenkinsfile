@@ -7,7 +7,7 @@ pipeline {
             }
         }
         stage('Build image') {
-            when { branch "develop", "master" }
+            when { branch "master" }
             steps{
                 ms1 = docker.build("fourth-memento-307608/test","-f ./cicd/Dockerfile ./ ")
             }
