@@ -6,6 +6,19 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Build and push image') {
+            anyOf{
+                when { branch "develop" }
+                when { branch "master" }
+            }
+            steps{
+                script {
+                    ms1 = docker.build("fourth-memento-307608/test","-f ./cicd/Dockerfile ./ ")
+                    docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry') {
+                    ms1.push("${env.BUILD_NUMBER}")
+                }
+            }
+        }
         stage('Build image') {
             when { branch "master" }
             steps{
@@ -16,6 +29,9 @@ pipeline {
         }
     }
 }
+
+//             docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry') {
+//                 ms1.push("${env.BUILD_NUMBER}")
 // test
 // node{
 //     checkout scm
