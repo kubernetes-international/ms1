@@ -7,9 +7,11 @@ pipeline {
             }
         }
         stage('Build and push image') {
-            anyOf{
-                expression{env.BRANCH_NAME == 'master'}
-                expression{env.BRANCH_NAME == 'develop'}
+            when{
+                anyOf{
+                    expression{env.BRANCH_NAME == 'master'}
+                    expression{env.BRANCH_NAME == 'develop'}
+                }
             }
             steps{
                 script {
