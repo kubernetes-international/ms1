@@ -14,11 +14,19 @@ pipeline {
                 }
             }
             steps{
-                script {"""
+                script {
                     ms1 = docker.build("fourth-memento-307608/test","-f ./cicd/Dockerfile ./ ")
+                }
+                script {
+                    echo "specify reg"
                     docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry')
+                    echo "specify reg"
+                }
+                script {
+                    echo "push"
                     ms1.push("${env.BUILD_NUMBER}")
-                """}
+                    echo "push"
+                }
             }
         }
     }
