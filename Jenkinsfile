@@ -19,14 +19,6 @@ pipeline {
                 }
             }
         }
-        // stage('Build image') {
-        //     when { branch "master" }
-        //     steps{
-        //         script {
-        //             ms1 = docker.build("fourth-memento-307608/test","-f ./cicd/Dockerfile ./ ")
-        //         }
-        //     }
-        // }
     }
 }
 
