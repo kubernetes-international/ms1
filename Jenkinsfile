@@ -15,7 +15,7 @@ pipeline {
             }
             steps{
                 script {
-                    ms1 = docker.build("fourth-memento-307608/test","-f ./cicd/Dockerfile ./ ")
+                    ms1 = docker.build("fourth-memento-307608/ms1","-f ./cicd/Dockerfile ./ ")
                 }
                 script {
                     docker.withRegistry('https://eu.gcr.io', 'gcr:google-container-registry') {
@@ -49,7 +49,9 @@ pipeline {
             }
         }
         stage ('Starting ART job') {
-            build job: 'deploy-to-k8s', parameters: [[$class: 'StringParameterValue', name: 'ms-name', value: 'ms1']]
+            steps{
+                build job: 'deploy-to-k8s', parameters: [[$class: 'StringParameterValue', name: 'ms-name', value: 'ms1']]
+            }    
         }
     }
 }
