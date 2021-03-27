@@ -48,7 +48,7 @@ pipeline {
                 }
             }
         }
-        stage ('Starting ART job') {
+        stage ('Push deployment to dev cluster') {
             steps{
                 build job: 'deploy-to-k8s', parameters: [[$class: 'StringParameterValue', name: 'ms-name', value: 'ms1']]
             }    
