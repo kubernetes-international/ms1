@@ -16,7 +16,7 @@ pipeline {
 			}
 			steps{
 				script {
-					ms1 = docker.build("fourth-memento-307608/ms1","-f ./cicd/Dockerfile ./ ")
+					ms = docker.build("${gcp_project_name}/${microservice_name}","-f ./cicd/Dockerfile ./ ")
 				}
 			}
 		}
@@ -27,8 +27,8 @@ pipeline {
 			}
 			steps{
 				script {
-					docker.withRegistry('https://eu.gcr.io', 'gcr:gcr-admin-key') {
-						ms1.push("latest")
+					docker.withRegistry("${gcr_url}", "gcr:${gcr-admin-key}") {
+						ms.push("latest")
 					}                    
 				}
 			}
