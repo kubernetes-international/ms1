@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    return "Python application inside container"
+    return "Python application inside container2"
 
 
 if __name__ == "__main__":
